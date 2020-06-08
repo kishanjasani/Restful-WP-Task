@@ -28,5 +28,21 @@ along with Task Book. If not, see http://www.gnu.org/licenses/gpl-3.0.html.
  * Register Task Post types.
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/posttypes.php';
-
 register_activation_hook( __FILE__, 'taskbook_rewrite_rules' );
+
+/**
+ * Register Task Logger Role.
+ */
+require_once plugin_dir_path( __FILE__ ) . 'includes/roles.php';
+register_activation_hook( __FILE__, 'taskbook_register_role' );
+
+/**
+ * Add capabilities.
+ */
+register_activation_hook( __FILE__, 'taskbook_add_capabilities' );
+
+/**
+ * Remove Task Logger Role On Deactivation.
+ */
+register_deactivation_hook( __FILE__, 'taskbook_remove_role' );
+register_deactivation_hook( __FILE__, 'taskbook_add_capabilities' );
